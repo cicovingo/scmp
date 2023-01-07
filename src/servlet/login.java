@@ -5,6 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Retailer;
+import model.Supplier;
 /*
  * author: sukru.okul
  * */
@@ -23,11 +26,21 @@ public class login extends HttpServlet {
 			r.include(request, response);
 		} else {
 			if (usertype.equals("Satýcý")) {
-				RequestDispatcher r = request.getRequestDispatcher("retailer.jsp");
-				r.forward(request, response);
+				Retailer retailer = new Retailer(username, password);
+				if(retailer.login()){
+					RequestDispatcher r = request.getRequestDispatcher("retailer.jsp");
+					r.forward(request, response);
+				}else{
+					
+				}
 			} else if (usertype.equals("Tedarikçi")) {
-				RequestDispatcher r = request.getRequestDispatcher("supplier.jsp");
-				r.forward(request, response);
+				Supplier supplier = new Supplier(username, password);
+				if(supplier.login()){
+					RequestDispatcher r = request.getRequestDispatcher("supplier.jsp");
+					r.forward(request, response);
+				}else{
+					
+				}
 			} else {
 				RequestDispatcher r = request.getRequestDispatcher("login.jsp");
 				r.include(request, response);

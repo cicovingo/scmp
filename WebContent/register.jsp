@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Giriş Yap</title>
+<title>Kaydol</title>
 </head>
 <body>
-<form action="login" method="post">
+<form action="register" method="post">
 <table style="width: 20%">
 <tr><td>Kullanıcı Tipi</td><td><select name="usertype"> 
     <option value="-1">--- Seçiniz ---</option> 
@@ -15,7 +15,9 @@
 </select></td></tr>
 <tr><td>Kullanıcı Adı(Mail)</td><td><input type="text" name="username" /></td></tr>
 <tr><td>Şifre</td><td><input type="password" name="password" /></td></tr>
-<tr><td><a href=register.jsp>Kaydol</a></td><td><input type="submit" value="Giriş Yap" /></td></tr>
+<tr><td>Ad&Soyad</td><td><input type="text" name="name" /></td></tr>
+<tr><td>Telefon</td><td><input type="text" name="phone" /></td></tr>
+<tr><td></td><td><input type="submit" value="Kaydol" /></td></tr>
 </table>
 </form>
 </body>
