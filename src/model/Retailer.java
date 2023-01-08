@@ -3,6 +3,8 @@ package model;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.*;
 
@@ -10,7 +12,10 @@ import lombok.*;
  * author: sukru.okul
  * */
 
-@Getter @Setter @NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)  
+@AllArgsConstructor(access = AccessLevel.PUBLIC)  
+@ToString  
+@Getter @Setter
 public class Retailer extends User{
 	private String name;
 	private String password;
@@ -21,16 +26,12 @@ public class Retailer extends User{
 		super(emailAddress, password);
 	}
 	
-	public Retailer(String name, String password, String emailAddress, String phoneNumber) {
-		super(name,password,emailAddress,phoneNumber);
-	}
-	
 	public boolean login(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scmp", "root", "root");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from retailer where emailAddress='" + emailAddress + "' and password='" + password + "'");
+			ResultSet rs = st.executeQuery("select * from retailer where emailAddress like'%" + emailAddress + "%' and password like '%" + password + "%'");
 			return true;
 		}catch(Exception e){
 			return false;
@@ -49,8 +50,26 @@ public class Retailer extends User{
 		}
 	}
 	
-	public void viewProducts(){
-		
+	public List<Product> viewProducts(){
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scmp", "root", "root");
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select * from product");
+			List<Product> productList = new ArrayList<Product>();
+			Product product;
+			while(rs.next()){
+				product = new Product();
+				product.setProductId(rs.getLong("productId"));
+				product.setProductName(rs.getString("productName"));
+				product.setQuantity(rs.getInt("quantity"));
+				product.setPrice(rs.getDouble("price"));
+			    productList.add(product);
+			}
+			return productList;
+		}catch(Exception e){
+			return new ArrayList<Product>();
+		}
 	}
 	
 	public void sellProducts(){
