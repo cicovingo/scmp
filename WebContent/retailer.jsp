@@ -7,7 +7,7 @@
 <title>Satıcı</title>
 </head>
 <body>
-	<p align="right">Sepetim</p>
+	<p align="right"><a href=orderBasket.jsp">Sepetim</a></p>
 	<form action="retailerServlet" method="get">
 		<table border="1" cellpadding="5">
 			<caption>
@@ -25,6 +25,7 @@
 					<td><c:out value="${p.productName}" /></td>
 					<td><c:out value="${p.quantity}" /></td>
 					<td><c:out value="${p.price}" /></td>
+					<td><button value="Sepete Ekle" onclick="${retailer.addOrder(p)}"/></td>
 				</tr>
 			</c:forEach>
 		</table>
