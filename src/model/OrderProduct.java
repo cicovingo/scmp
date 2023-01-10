@@ -13,4 +13,5 @@ public class OrderProduct{
 	private Long productId;
 	private int quantity;
 	private double totalAmount;
+	private boolean isAprove;
 }

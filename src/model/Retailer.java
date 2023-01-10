@@ -86,6 +86,7 @@ public class Retailer extends User {
 				product.setProductName(rs.getString("productName"));
 				product.setQuantity(rs.getInt("quantity"));
 				product.setPrice(rs.getDouble("price"));
+				product.setUserId(rs.getLong("userId"));
 				productList.add(product);
 			}
 			return productList;

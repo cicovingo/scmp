@@ -18,6 +18,7 @@ public class Product{
 	private String productName;
 	private int quantity;
 	private double price;
+	private Long userId;
 	
 	public List<Product> searchProductByName(){
 		try{
