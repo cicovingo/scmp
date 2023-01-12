@@ -7,6 +7,9 @@
 <title>Tedarikçi</title>
 </head>
 <body>
+	<p align="right">
+		<a href=login.jsp>Çıkış Yap</a>
+	</p>
 	<p align="center">Onay Bekleyen Siparişler</p>
 	<form action="supplierServlet" method="get">
 		<table border="1" cellpadding="5">
@@ -19,17 +22,43 @@
 				<th>Talep Miktarı</th>
 				<th>Toplam Fiyat(TL)</th>
 			</tr>
-			<c:forEach var="p" items="${supplierServlet.productList}">
+			<c:forEach var="p" items="${supplierServlet.orderProductList}">
 				<tr>
 					<td><c:out value="${p.orderId}" /></td>
 					<td><c:out value="${p.productId}" /></td>
 					<td><c:out value="${p.quantity}" /></td>
 					<td><c:out value="${p.totalAmount}" /></td>
-					<td><button value="Onayla" onclick="${supplier.updateOrderProduct(p)}"/></td>
+					<td><button value="Onayla"
+							onclick="${supplier.updateOrderProduct(p)}" /></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<p align=right><button value="Onayla" onclick="${supplier.updateOrderProducs()}"/></p>
+		<p align=right>
+			<button value="Onayla" onclick="${supplier.updateOrderProducs()}" />
+		</p>
+		<hr>
+		<p align="center">Ürünlerim</p>
+		<table border="1" cellpadding="5">
+			<caption>
+				<h2>Ürün Listesi</h2>
+			</caption>
+			<tr>
+				<th>Ürün Numarası</th>
+				<th>Ürün Adı</th>
+				<th>Stok Miktarı</th>
+				<th>Fiyat(TL)</th>
+			</tr>
+			<c:forEach var="p" items="${supplierServlet.productList}">
+				<tr>
+					<td><c:out value="${p.productId}" /></td>
+					<td><c:out value="${p.productName}" /></td>
+					<td><c:out value="${p.quantity}" /></td>
+					<td><c:out value="${p.price}" /></td>
+					<td><button value="Güncelle"/></td>
+				</tr>
+			</c:forEach>
+		</table>
+
 	</form>
 </body>
 </html>

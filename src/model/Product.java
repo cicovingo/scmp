@@ -14,7 +14,7 @@ import lombok.*;
 @ToString  
 @Getter @Setter
 public class Product{
-	private  Long productId;
+	private Long productId;
 	private String productName;
 	private int quantity;
 	private double price;

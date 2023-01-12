@@ -7,6 +7,7 @@
 <title>Sepetim</title>
 </head>
 <body>
+	<p align="right"><a href=login.jsp>Çıkış Yap</a></p>
 	<table border="1" cellpadding="5">
 		<caption>
 			<h2>Ürün Listesi</h2>

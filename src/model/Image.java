@@ -8,9 +8,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PUBLIC) 
 @ToString  
 @Getter @Setter
-public class Order{
-	private Long id;
-	private String retailerId;
-	private Date orderDate;
-	private boolean isAprove;
+public class Image{
+	private Long imageId;
+	private String imagePath;
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.*;
 
 /*
@@ -14,22 +15,25 @@ import lombok.*;
  * */
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@RequiredArgsConstructor
 @ToString
 @Getter
 @Setter
 public class Retailer extends User {
+	@NonNull 
 	private String name;
+	@NonNull
 	private String password;
+	@NonNull
 	private String emailAddress;
+	@NonNull
 	private String phoneNumber;
 
+	//Satýcýnýn sepetindeki ürünlerin listesi
 	private List<Product> orderList = new ArrayList<Product>();
-
 	public List<Product> getOrderList() {
 		return orderList;
 	}
-
 	public void setOrderList(List<Product> orderList) {
 		this.orderList = orderList;
 	}
@@ -47,16 +51,24 @@ public class Retailer extends User {
 	}
 
 	//login için çaðýrýlan method
-	public boolean login() {
+	public Retailer login() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scmp", "root", "root");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select * from retailer where emailAddress like'%" + emailAddress
 					+ "%' and password like '%" + password + "%'");
-			return true;
+			Retailer retailer = new Retailer();
+			while (rs.next()) {
+				retailer = new Retailer();
+				retailer.setName(rs.getString("name"));
+				retailer.setEmailAddress(rs.getString("emailAddress"));
+				retailer.setPassword(rs.getString("password"));
+				retailer.setPhoneNumber(rs.getString("phoneNumber"));
+			}
+			return retailer;
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 

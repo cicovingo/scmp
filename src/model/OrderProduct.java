@@ -9,7 +9,7 @@ import lombok.*;
 @ToString  
 @Getter @Setter
 public class OrderProduct{
-	private  Long orderId;
+	private Long orderId;
 	private Long productId;
 	private int quantity;
 	private double totalAmount;

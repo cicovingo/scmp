@@ -7,6 +7,7 @@
 <title>Satıcı</title>
 </head>
 <body>
+	<p align="right"><a href=login.jsp>Çıkış Yap</a></p>
 	<p align="right"><a href=orderBasket.jsp">Sepetim</a></p>
 	<form action="retailerServlet" method="get">
 		<table border="1" cellpadding="5">

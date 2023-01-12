@@ -32,16 +32,20 @@ public class login extends HttpServlet {
 		} else {
 			if (usertype.equals("Satýcý")) {
 				Retailer retailer = new Retailer(username, password);
-				if(retailer.login()){
+				retailer = retailer.login();
+				if(retailer!=null){
 					RequestDispatcher r = request.getRequestDispatcher("retailer.jsp");
+					request.setAttribute("retailerId",retailer.getEmailAddress());
 					r.forward(request, response);
 				}else{
 					
 				}
 			} else if (usertype.equals("Tedarikçi")) {
 				Supplier supplier = new Supplier(username, password);
-				if(supplier.login()){
+				supplier = supplier.login();
+				if(supplier!=null){
 					RequestDispatcher r = request.getRequestDispatcher("supplier.jsp");
+					request.setAttribute("userId",supplier.getUserId());
 					r.forward(request, response);
 				}else{
 					
