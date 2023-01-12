@@ -17,7 +17,11 @@ public class retailerServlet extends HttpServlet {
 	public retailerServlet() {
 		super();
 	}
+	
+	//Login olan satýcýnýn ürün listesi, baþlangýçta boþtur
 	public List<Product> productList = new ArrayList<Product>();
+	
+	//Satýcýnýn ürün listesini çaðýrýrken kullanýlan method
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		productList = new Retailer().viewProducts();

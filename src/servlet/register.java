@@ -16,6 +16,7 @@ public class register extends HttpServlet {
 		super();
 	}
 
+	//kaydolurken yapýlan post iþlemi
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String emailAddress = request.getParameter("username");

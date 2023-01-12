@@ -26,6 +26,7 @@ public class Supplier extends User {
 		super(emailAddress, password);
 	}
 
+	//login için çaðýrýlan method
 	public boolean login() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -39,6 +40,7 @@ public class Supplier extends User {
 		}
 	}
 
+	//register için çaðýrýlan method
 	public boolean register() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -52,12 +54,14 @@ public class Supplier extends User {
 		}
 	}
 
+	//sipariþ edilen ürünler toplu olarak onaylandýðýnda çaðýrýlan method
 	public void updateProducts() {
 		for (OrderProduct orderProduct : this.getProducts()) {
 			updateOrderProduct(orderProduct);
 		}
 	}
-
+	
+	//sipariþ edilen bir ürün onaylandýðýnda çaðýrýlan method
 	public void updateOrderProduct(OrderProduct orderProduct) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -66,16 +70,37 @@ public class Supplier extends User {
 			int i = st.executeUpdate("update orderProduct set isAprove=true where orderId=" + orderProduct.getOrderId()
 					+ " and productId=" + orderProduct.getProductId());
 			ResultSet rs = st.executeQuery("select p from product where p.prodcutId=" + orderProduct.getProductId());
+			
+			//Sipariþe göre stok güncellenir
 			while (rs.next()) {
 				int newQuantity = rs.getInt("quantity") - orderProduct.getQuantity();
 				st.executeUpdate("update product set quantity=" + newQuantity + " where productId="
 						+ orderProduct.getProductId());
 			}
+			
+			//Fatura oluþturmak için ürün detaylarý çekilir
+			rs = st.executeQuery("select * from product where productId='" + orderProduct.getProductId() + "'");
+			
+			//Fatura objesi oluþturulur
+			Billing billing = new Billing();
+			while(rs.next()){
+				billing = new Billing();
+				billing.setProductId(rs.getLong("productId"));
+				billing.setProductName(rs.getString("productName"));
+				billing.setProductQuantity(orderProduct.getQuantity());
+				billing.setProductPrice(rs.getDouble("price"));
+				billing.setTotalAmount(orderProduct.getTotalAmount());
+				billing.generateBilling();
+			}
+			
+			
 		} catch (Exception e) {
-			// stok yetersiz
+			// stok yetersiz uyarýsý
+			System.out.println(orderProduct.getProductId()+" için stok yetersiz!!!");
 		}
 	}
 
+	//Üürnlerin satýþ için listelenirken çaðýrýldýðý method
 	public List<OrderProduct> getProducts() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

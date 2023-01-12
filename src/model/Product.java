@@ -20,6 +20,7 @@ public class Product{
 	private double price;
 	private Long userId;
 	
+	//Ýsime göre ürün ararken çaðýrýlan method
 	public List<Product> searchProductByName(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
@@ -42,6 +43,7 @@ public class Product{
 		}
 	}
 	
+	//Ürün detaylarý grüntülenirken çaðýrýlan method
 	public Product viewProductDetails(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");

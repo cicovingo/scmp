@@ -17,7 +17,11 @@ public class SupplierServlet extends HttpServlet {
 	public SupplierServlet() {
 		super();
 	}
+	
+	//Tedarikçinin sipariþleri görebilmek için oluþturulan ürün listesi
 	public List<OrderProduct> productList = new ArrayList<OrderProduct>();
+	
+	//Sipariþler görüntülenmek istendiðinde çaðýrýlan method
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		productList = new Supplier().getProducts();

@@ -46,6 +46,7 @@ public class Retailer extends User {
 		this.orderList.remove(product);
 	}
 
+	//login için çaðýrýlan method
 	public boolean login() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -59,6 +60,7 @@ public class Retailer extends User {
 		}
 	}
 
+	//register için çaðýrýlan method
 	public boolean register() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -72,6 +74,7 @@ public class Retailer extends User {
 		}
 	}
 
+	//Ürünleri görüntülemek için çaðýrýlan method
 	public List<Product> viewProducts() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -95,6 +98,7 @@ public class Retailer extends User {
 		}
 	}
 
+	//Ürün satýn alma talebi yapýlýrken çaðýrýlan method, sepetteki ürünler alýnýrken çaðýrýlýr
 	public void sellProducts() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

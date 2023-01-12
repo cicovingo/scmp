@@ -20,6 +20,7 @@ public class login extends HttpServlet {
 		super();
 	}
 	
+	//login esnasýndaki post iþlemi
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String username = request.getParameter("username");
