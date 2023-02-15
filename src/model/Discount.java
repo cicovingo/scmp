@@ -8,10 +8,10 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PUBLIC) 
 @ToString  
 @Getter @Setter
-public class OrderProduct{
-	private Long orderId;
-	private Long productId;
-	private int quantity;
-	private double totalAmount;
-	private boolean isApprove;
+public class Discount{
+	private Long id;
+	private String retailerId;
+	private Long userId;
+	private Date expireDate;
+	private double discountRate;
 }

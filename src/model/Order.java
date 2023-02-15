@@ -12,5 +12,5 @@ public class Order{
 	private Long id;
 	private String retailerId;
 	private Date orderDate;
-	private boolean isAprove;
+	private boolean isApprove;
 }
